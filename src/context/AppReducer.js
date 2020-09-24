@@ -79,11 +79,11 @@ export default (state, action) => {
                 input: []
             };
         case 'BACKSPACE':
-            const splice = state.input.splice(state.input.length-1,1);
-            console.log(splice)
+           
         return {
-                ...state,
-                number: (Math.floor(state.number / 10))
+               ...state,
+                number: (Math.floor(state.number / 10)),
+                input:state.input.slice(0, -1)
            
              
             };
