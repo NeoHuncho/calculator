@@ -3,8 +3,8 @@ import {GlobalContext /*for global state*/} from '../context/GlobalState'
 import Keyboard from './Keyboard';
 import '../components/Styling/Calculator.css'
 export const Calculator = () => {
-const{display}= useContext(GlobalContext);
-const number = Number(display.join(''))
+const{number}= useContext(GlobalContext);
+
     return (
         <div id="calculator">
             <div id="result">

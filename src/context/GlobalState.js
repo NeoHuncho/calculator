@@ -3,7 +3,8 @@ import AppReducer from './AppReducer';
 //initial state
 const initialState = {
     history:null,
-    display:[]
+    display:[],
+    number:null
 }
 
 //Create Context
@@ -33,6 +34,7 @@ export const GlobalProvider = ({ children }) => {
 return (<GlobalContext.Provider value={{
     display: state.display,
     history:state.history,
+    number:state.number,
     displayNumber,
     historyNumber
 }}>

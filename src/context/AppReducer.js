@@ -2,11 +2,12 @@ export default (state,action) =>{
 switch(action.type){
    case 'DISPLAY_NUMBER':
  const array = state.display.concat(action.payload);
- const result= Number(array.join(''));
+
 
    return{
            ...state,
-           display: array
+           display:array,
+           number: Number(array.join(''))
        }
     case 'ADD_TRANSACTION':
         return{
