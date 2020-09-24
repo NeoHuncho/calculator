@@ -1,20 +1,70 @@
-export default (state,action) =>{
-switch(action.type){
-   case 'DISPLAY_NUMBER':
- const array = state.display.concat(action.payload);
+export default (state, action) => {
+    switch (action.type) {
+        case 'INPUT_NUMBER':
+            const array = state.input.concat(action.payload);
+            return {
+                ...state,
+                input: array,
+                number: Number(array.join(''))
+            }
+        case 'SYMBOL_HANDLER':
+            return {
+                ...state,
+                history: state.number,
+                number: null,
+                input: [],
+                symbol: action.payload
 
+            }
+        case 'RESULT':
+            if (state.symbol === '*') {
+                return {
+                    ...state,
+                    number: state.number * state.history,
+                    history: null,
+                    symbol: null
 
-   return{
-           ...state,
-           display:array,
-           number: Number(array.join(''))
-       }
-    case 'ADD_TRANSACTION':
-        return{
-            ...state,
-            transactions: [action.payload,...state.transactions]
-        } 
-    default:
-        return state;
-}
+                }
+            }
+            if (state.symbol === '-') {
+                return {
+                    ...state,
+                    number: state.history - state.number,
+                    history: null,
+                    symbol: null
+
+                }
+            }
+            if (state.symbol === '+') {
+                return {
+                    ...state,
+                    number: state.number + state.history,
+                    history: null,
+                    symbol: null
+
+                }
+            }
+            if (state.symbol === '/') {
+                return {
+                    ...state,
+                    number: state.history / state.number,
+                    history: null,
+                    symbol: null
+
+                }
+            }
+            if (state.symbol === '%') {
+                return {
+                    ...state,
+                    number: state.history % state.number,
+                    history: null,
+                    symbol: null
+
+                }
+            }
+    break;
+
+        default:
+            return state;
+    }
 }

@@ -2,9 +2,10 @@ import React, { createContext, useReducer } from 'react';
 import AppReducer from './AppReducer';
 //initial state
 const initialState = {
-    history:null,
-    display:[],
-    number:null
+    history: null,
+    input: [],
+    number: null,
+    symbol:''
 }
 
 //Create Context
@@ -16,27 +17,35 @@ export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
     //actions
-    function displayNumber(number){
+    function symbolHandler(symbol) {
         dispatch({
-            type: 'DISPLAY_NUMBER',
+            type: 'SYMBOL_HANDLER',
+            payload: symbol
+        });
+    }
+    function inputNumber(number) {
+        dispatch({
+            type: 'INPUT_NUMBER',
             payload: number
         });
     }
-
-    function historyNumber(numbers){
+    function result() {
         dispatch({
-            type: 'HISTORY_NUMBER',
-            payload: numbers
+            type: 'RESULT',
         });
     }
 
+ 
 
-return (<GlobalContext.Provider value={{
-    display: state.display,
-    history:state.history,
-    number:state.number,
-    displayNumber,
-    historyNumber
-}}>
-    {children}
-</GlobalContext.Provider>)}
+
+    return (<GlobalContext.Provider value={{
+        number: state.number,
+        history: state.history,
+        inputNumber,
+        symbolHandler,
+        result
+       
+    }}>
+        {children}
+    </GlobalContext.Provider>)
+}
