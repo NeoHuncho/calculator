@@ -34,6 +34,17 @@ export const GlobalProvider = ({ children }) => {
             type: 'RESULT',
         });
     }
+    function clear() {
+        dispatch({
+            type: 'CLEAR',
+        });
+    }
+    function backspace() {
+        dispatch({
+            type: 'BACKSPACE',
+        });
+    }
+
 
  
 
@@ -43,7 +54,9 @@ export const GlobalProvider = ({ children }) => {
         history: state.history,
         inputNumber,
         symbolHandler,
-        result
+        result,
+        clear,
+        backspace
        
     }}>
         {children}

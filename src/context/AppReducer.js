@@ -22,7 +22,8 @@ export default (state, action) => {
                     ...state,
                     number: state.number * state.history,
                     history: null,
-                    symbol: null
+                    symbol: null,
+                    input: []
 
                 }
             }
@@ -31,7 +32,8 @@ export default (state, action) => {
                     ...state,
                     number: state.history - state.number,
                     history: null,
-                    symbol: null
+                    symbol: null,
+                    input: []
 
                 }
             }
@@ -40,7 +42,8 @@ export default (state, action) => {
                     ...state,
                     number: state.number + state.history,
                     history: null,
-                    symbol: null
+                    symbol: null,
+                    input: []
 
                 }
             }
@@ -49,7 +52,8 @@ export default (state, action) => {
                     ...state,
                     number: state.history / state.number,
                     history: null,
-                    symbol: null
+                    symbol: null,
+                    input: []
 
                 }
             }
@@ -58,11 +62,32 @@ export default (state, action) => {
                     ...state,
                     number: state.history % state.number,
                     history: null,
-                    symbol: null
+                    symbol: null,
+                    input: []
 
                 }
             }
-    break;
+
+            break;
+
+        case 'CLEAR':
+            return {
+                ...state,
+                number: null,
+                history: null,
+                symbol: null,
+                input: []
+            };
+        case 'BACKSPACE':
+            const splice = state.input.splice(state.input.length-1,1);
+            console.log(splice)
+        return {
+                ...state,
+                number: (Math.floor(state.number / 10))
+           
+             
+            };
+
 
         default:
             return state;

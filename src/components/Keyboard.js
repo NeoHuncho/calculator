@@ -3,12 +3,12 @@ import '../components/Styling/Keyboard.css';
 import {GlobalContext /*for global state*/} from '../context/GlobalState'
 export const Keyboard = () => {
    
-    const{inputNumber,symbolHandler,result}=useContext(GlobalContext);
+    const{inputNumber,symbolHandler,result,clear,backspace}=useContext(GlobalContext);
 
     return (
         <div id="keyboard">
-        <button className="operator" id="clear">C</button>
-        <button className="operator" id="backspace">CE</button>
+        <button className="operator" id="clear" onClick={()=>clear()}>C</button>
+        <button className="operator" id="backspace" onClick={()=>backspace()}>CE</button>
         <button className="operator" id="%" onClick={()=>symbolHandler('%')}>%</button>
         <button className="operator" id="/" onClick={()=>symbolHandler('/')}>&#247;</button>
         <button className="number" id="7"onClick={()=>inputNumber(7)}>7</button>
