@@ -2,10 +2,18 @@ export default (state, action) => {
     switch (action.type) {
         case 'INPUT_NUMBER':
             const array = state.input.concat(action.payload);
-            return {
-                ...state,
-                input: array,
-                number: Number(array.join(''))
+            if (array.length <= 15) {
+                return {
+                    ...state,
+                    input: array,
+                    number: Number(array.join(''))
+                }
+            } else {
+                return {
+                    ...state,
+                    input: array,
+                    number: "ERROR TOO LONG"
+                }
             }
         case 'SYMBOL_HANDLER':
             return {
@@ -79,13 +87,13 @@ export default (state, action) => {
                 input: []
             };
         case 'BACKSPACE':
-           
-        return {
-               ...state,
+
+            return {
+                ...state,
                 number: (Math.floor(state.number / 10)),
-                input:state.input.slice(0, -1)
-           
-             
+                input: state.input.slice(0, -1)
+
+
             };
 
 
